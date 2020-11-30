@@ -16,7 +16,7 @@ stopwords_word = nltk.corpus.stopwords.words('english')
 newStopWords = [',','|','.','--',':','(',')']
 stopwords_word.extend(newStopWords)
 
-text = open('rfc2734_1.txt', 'r').read()
+text = open('rfc1702_1.txt', 'r').read()
 token = word_tokenize(text)
 #print(token)
 
