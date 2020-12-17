@@ -60,41 +60,41 @@ Abstract
 
 Table of Contents
 
-   1. Introduction..................................................3
+    Introduction 
 
-   2. Terminology...................................................4
+    Terminology 
 
-   3. IPv6 Header Format............................................5
+    IPv6 Header Format 
 
-   4. IPv6 Extension Headers........................................6
-       4.1 Extension Header Order...................................8
-       4.2 Options..................................................9
-       4.3 Hop-by-Hop Options Header...............................11
-       4.4 Routing Header..........................................13
-       4.5 Fragment Header.........................................19
-       4.6 Destination Options Header..............................24
-       4.7 No Next Header..........................................25
+    IPv6 Extension Headers 
+       1 Extension Header Order 
+       2 Options 
+       3 Hop-by-Hop Options Header 
+       4 Routing Header 
+       5 Fragment Header 
+       6 Destination Options Header 
+       7 No Next Header 
 
-   5. Packet Size Issues...........................................26
+    Packet Size Issues 
 
-   6. Flow Labels..................................................28
+    Flow Labels 
 
-   7. Priority.....................................................30
+    Priority 
 
-   8. Upper-Layer Protocol Issues..................................31
-       8.1 Upper-Layer Checksums...................................31
-       8.2 Maximum Packet Lifetime.................................32
-       8.3 Maximum Upper-Layer Payload Size........................32
+    Upper-Layer Protocol Issues 
+       1 Upper-Layer Checksums 
+       2 Maximum Packet Lifetime 
+       3 Maximum Upper-Layer Payload Size 
 
-   Appendix A. Formatting Guidelines for Options...................33
+   Appendix A. Formatting Guidelines for Options 
 
-   Security Considerations.........................................36
+   Security Considerations 
 
-   Acknowledgments.................................................36
+   Acknowledgments 
 
-   Authors' Addresses..............................................36
+   Authors' Addresses 
 
-   References......................................................37
+   References 
 
 
 
@@ -112,7 +112,7 @@ Table of Contents
 
 
 
-1.  Introduction
+  Introduction
 
    IP version 6 (IPv6) is a new version of the Internet Protocol,
    designed as a successor to IP version 4 (IPv4) [RFC-791].  The
@@ -152,7 +152,7 @@ Table of Contents
       o  Authentication and Privacy Capabilities
 
          Extensions to support authentication, data integrity, and
-         (optional) data confidentiality are specified for IPv6.
+         (optional) data confidentiality are specified for IPv
 
    This document specifies the basic IPv6 header and the initially-
    defined IPv6 extension headers and options.  It also discusses packet
@@ -166,16 +166,16 @@ Table of Contents
 
 
 
-2.  Terminology
+  Terminology
 
-   node        - a device that implements IPv6.
+   node        - a device that implements IPv
 
    router      - a node that forwards IPv6 packets not explicitly
                  addressed to itself.  [See Note below].
 
    host        - any node that is not a router.  [See Note below].
 
-   upper layer - a protocol layer immediately above IPv6.  Examples are
+   upper layer - a protocol layer immediately above IPv  Examples are
                  transport protocols such as TCP and UDP, control
                  protocols such as ICMP, routing protocols such as OSPF,
                  and internet or lower-layer protocols being "tunneled"
@@ -184,7 +184,7 @@ Table of Contents
 
    link        - a communication facility or medium over which nodes can
                  communicate at the link layer, i.e., the layer
-                 immediately below IPv6.  Examples are Ethernets (simple
+                 immediately below IPv  Examples are Ethernets (simple
                  or bridged); PPP links; X.25, Frame Relay, or ATM
                  networks; and internet (or higher) layer "tunnels",
                  such as tunnels over IPv4 or IPv6 itself.
@@ -220,13 +220,10 @@ Table of Contents
 
 
 
-3.  IPv6 Header Format
+  IPv6 Header Format
 
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |Version| Prio. |                   Flow Label                  |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |         Payload Length        |  Next Header  |   Hop Limit   |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                                                               +
    |                                                               |
@@ -234,7 +231,6 @@ Table of Contents
    |                                                               |
    +                                                               +
    |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                                                               +
    |                                                               |
@@ -242,13 +238,12 @@ Table of Contents
    |                                                               |
    +                                                               +
    |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Version              4-bit Internet Protocol version number = 6.
+   Version              4-bit Internet Protocol version number = 
 
-   Prio.                4-bit priority value.  See section 7.
+   Prio.                4-bit priority value.  See section 
 
-   Flow Label           24-bit flow label.  See section 6.
+   Flow Label           24-bit flow label.  See section 
 
    Payload Length       16-bit unsigned integer.  Length of payload,
                         i.e., the rest of the packet following the
@@ -277,11 +272,11 @@ Table of Contents
    Destination Address  128-bit address of the intended recipient
                         of the packet (possibly not the ultimate
                         recipient, if a Routing header is present).
-                        See [RFC-1884] and section 4.4.
+                        See [RFC-1884] and section 
 
 
 
-4.  IPv6 Extension Headers
+  IPv6 Extension Headers
 
    In IPv6, optional internet-layer information is encoded in separate
    headers that may be placed between the IPv6 header and the upper-
@@ -291,28 +286,22 @@ Table of Contents
    more extension headers, each identified by the Next Header field of
    the preceding header:
 
-   +---------------+------------------------
    |  IPv6 header  | TCP header + data
    |               |
    | Next Header = |
    |      TCP      |
-   +---------------+------------------------
 
 
-   +---------------+----------------+------------------------
    |  IPv6 header  | Routing header | TCP header + data
    |               |                |
    | Next Header = |  Next Header = |
    |    Routing    |      TCP       |
-   +---------------+----------------+------------------------
 
 
-   +---------------+----------------+-----------------+-----------------
    |  IPv6 header  | Routing header | Fragment header | fragment of TCP
    |               |                |                 |  header + data
    | Next Header = |  Next Header = |  Next Header =  |
    |    Routing    |    Fragment    |       TCP       |
-   +---------------+----------------+-----------------+-----------------
 
 
    With one exception, extension headers are not examined or processed
@@ -357,7 +346,7 @@ Table of Contents
    octet fields within each extension header are aligned on their
    natural boundaries, i.e., fields of width n octets are placed at an
    integer multiple of n octets from the start of the header, for n = 1,
-   2, 4, or 8.
+   2, 4, or 
 
    A full implementation of IPv6 includes implementation of the
    following extension headers:
@@ -382,7 +371,7 @@ Table of Contents
 
 
 
-4.1  Extension Header Order
+1  Extension Header Order
 
    When more than one extension header is used in the same packet, it is
    recommended that those headers appear in the following order:
@@ -436,16 +425,14 @@ Table of Contents
 
 
 
-4.2  Options
+2  Options
 
    Two of the currently-defined extension headers -- the Hop-by-Hop
    Options header and the Destination Options header -- carry a variable
    number of type-length-value (TLV) encoded "options", of the following
    format:
 
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- - - - - - - - -
       |  Option Type  |  Opt Data Len |  Option Data
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- - - - - - - - -
 
       Option Type          8-bit identifier of the type of option.
 
@@ -513,9 +500,7 @@ Table of Contents
 
    Pad1 option  (alignment requirement: none)
 
-       +-+-+-+-+-+-+-+-+
        |       0       |
-       +-+-+-+-+-+-+-+-+
 
        NOTE! the format of the Pad1 option is a special case -- it does
              not have length and value fields.
@@ -528,9 +513,7 @@ Table of Contents
 
    PadN option  (alignment requirement: none)
 
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- - - - - - - - -
        |       1       |  Opt Data Len |  Option Data
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- - - - - - - - -
 
        The PadN option is used to insert two or more octets of padding
        into the Options area of a header.  For N octets of padding,
@@ -544,22 +527,19 @@ Table of Contents
 
 
 
-4.3  Hop-by-Hop Options Header
+3  Hop-by-Hop Options Header
 
    The Hop-by-Hop Options header is used to carry optional information
    that must be examined by every node along a packet's delivery path.
    The Hop-by-Hop Options header is identified by a Next Header value of
    0 in the IPv6 header, and has the following format:
 
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |  Next Header  |  Hdr Ext Len  |                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                               +
    |                                                               |
    .                                                               .
    .                            Options                            .
    .                                                               .
    |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Next Header          8-bit selector.  Identifies the type of header
                         immediately following the Hop-by-Hop Options
@@ -574,24 +554,21 @@ Table of Contents
                         complete Hop-by-Hop Options header is an integer
                         multiple of 8 octets long.  Contains one or
                         more TLV-encoded options, as described in
-                        section 4.2.
+                        section 
 
-   In addition to the Pad1 and PadN options specified in section 4.2,
+   In addition to the Pad1 and PadN options specified in section 2,
    the following hop-by-hop option is defined:
 
    Jumbo Payload option  (alignment requirement: 4n + 2)
 
-                                       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
                                        |      194      |Opt Data Len=4 |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
        |                     Jumbo Payload Length                      |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
        The Jumbo Payload option is used to send IPv6 packets with
        payloads longer than 65,535 octets.  The Jumbo Payload Length is
        the length of the packet in octets, excluding the IPv6 header but
        including the Hop-by-Hop Options header; it must be greater than
-       65,535.  If a packet is received with a Jumbo Payload option
+       65,53  If a packet is received with a Jumbo Payload option
        containing a Jumbo Payload Length less than or equal to 65,535,
 
 
@@ -652,7 +629,7 @@ Table of Contents
 
 
 
-4.4  Routing Header
+4  Routing Header
 
    The Routing header is used by an IPv6 source to list one or more
    intermediate nodes to be "visited" on the way to a packet's
@@ -660,15 +637,12 @@ Table of Contents
    options.  The Routing header is identified by a Next Header value of
    43 in the immediately preceding header, and has the following format:
 
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |  Next Header  |  Hdr Ext Len  |  Routing Type | Segments Left |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    .                                                               .
    .                       type-specific data                      .
    .                                                               .
    |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Next Header          8-bit selector.  Identifies the type of header
                         immediately following the Routing header.
@@ -762,11 +736,8 @@ Table of Contents
 
    The Type 0 Routing header has the following format:
 
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |  Next Header  |  Hdr Ext Len  | Routing Type=0| Segments Left |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |   Reserved    |             Strict/Loose Bit Map              |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                                                               +
    |                                                               |
@@ -774,7 +745,6 @@ Table of Contents
    |                                                               |
    +                                                               +
    |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                                                               +
    |                                                               |
@@ -782,11 +752,9 @@ Table of Contents
    |                                                               |
    +                                                               +
    |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    .                               .                               .
    .                               .                               .
    .                               .                               .
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                                                               +
    |                                                               |
@@ -794,7 +762,6 @@ Table of Contents
    |                                                               |
    +                                                               +
    |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Next Header          8-bit selector.  Identifies the type of header
                         immediately following the Routing header.
@@ -806,9 +773,9 @@ Table of Contents
                         the first 8 octets.  For the Type 0 Routing
                         header, Hdr Ext Len is equal to two times the
                         number of addresses in the header, and must
-                        be an even number less than or equal to 46.
+                        be an even number less than or equal to 4
 
-   Routing Type         0.
+   Routing Type         
 
 
 
@@ -818,7 +785,7 @@ Table of Contents
                         segments remaining, i.e., number of explicitly
                         listed intermediate nodes still to be visited
                         before reaching the final destination.
-                        Maximum legal value = 23.
+                        Maximum legal value = 2
 
    Reserved             8-bit reserved field.  Initialized to zero for
                         transmission; ignored on reception.
@@ -831,12 +798,12 @@ Table of Contents
                         (must be a neighbor), 0 means loose (need not be
                         a neighbor).
 
-   Address[1..n]        Vector of 128-bit addresses, numbered 1 to n.
+   Address[.n]        Vector of 128-bit addresses, numbered 1 to n.
 
 
    Multicast addresses must not appear in a Routing header of Type 0, or
    in the IPv6 Destination Address field of a packet carrying a Routing
-   header of Type 0.
+   header of Type 
 
    If bit number 0 of the Strict/Loose Bit Map has value 1, the
    Destination Address field of the IPv6 header in the original packet
@@ -925,7 +892,7 @@ Table of Contents
    As an example of the effects of the above algorithm, consider the
    case of a source node S sending a packet to destination node D, using
    a Routing header to cause the packet to be routed via intermediate
-   nodes I1, I2, and I3.  The values of the relevant IPv6 header and
+   nodes I1, I2, and I  The values of the relevant IPv6 header and
    Routing header fields on each segment of the delivery path would be
    as follows:
 
@@ -976,20 +943,17 @@ Table of Contents
 
 
 
-4.5  Fragment Header
+5  Fragment Header
 
    The Fragment header is used by an IPv6 source to send packets larger
    than would fit in the path MTU to their destinations.  (Note: unlike
    IPv4, fragmentation in IPv6 is performed only by source nodes, not by
-   routers along a packet's delivery path -- see section 5.)  The
+   routers along a packet's delivery path -- see section )  The
    Fragment header is identified by a Next Header value of 44 in the
    immediately preceding header, and has the following format:
 
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |  Next Header  |   Reserved    |      Fragment Offset    |Res|M|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                         Identification                        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Next Header          8-bit selector.  Identifies the initial header
                         type of the Fragmentable Part of the original
@@ -1047,10 +1011,8 @@ Table of Contents
 
    original packet:
 
-   +------------------+----------------------//-----------------------+
    |  Unfragmentable  |                 Fragmentable                  |
    |       Part       |                     Part                      |
-   +------------------+----------------------//-----------------------+
 
       The Unfragmentable Part consists of the IPv6 header plus any
       extension headers that must be processed by nodes en route to the
@@ -1069,10 +1031,8 @@ Table of Contents
 
    original packet:
 
-   +------------------+--------------+--------------+--//--+----------+
    |  Unfragmentable  |    first     |    second    |      |   last   |
    |       Part       |   fragment   |   fragment   | .... | fragment |
-   +------------------+--------------+--------------+--//--+----------+
 
 
 
@@ -1086,22 +1046,16 @@ Table of Contents
 
    fragment packets:
 
-   +------------------+--------+--------------+
    |  Unfragmentable  |Fragment|    first     |
    |       Part       | Header |   fragment   |
-   +------------------+--------+--------------+
 
-   +------------------+--------+--------------+
    |  Unfragmentable  |Fragment|    second    |
    |       Part       | Header |   fragment   |
-   +------------------+--------+--------------+
                          o
                          o
                          o
-   +------------------+--------+----------+
    |  Unfragmentable  |Fragment|   last   |
    |       Part       | Header | fragment |
-   +------------------+--------+----------+
 
    Each fragment packet is composed of:
 
@@ -1109,7 +1063,7 @@ Table of Contents
           Payload Length of the original IPv6 header changed to contain
           the length of this fragment packet only (excluding the length
           of the IPv6 header itself), and the Next Header field of the
-          last header of the Unfragmentable Part changed to 44.
+          last header of the Unfragmentable Part changed to 4
 
       (2) A Fragment header containing:
 
@@ -1119,10 +1073,10 @@ Table of Contents
                A Fragment Offset containing the offset of the fragment,
                in 8-octet units, relative to the start of the
                Fragmentable Part of the original packet.  The Fragment
-               Offset of the first ("leftmost") fragment is 0.
+               Offset of the first ("leftmost") fragment is 
 
                An M flag value of 0 if the fragment is the last
-               ("rightmost") one, else an M flag value of 1.
+               ("rightmost") one, else an M flag value of 
 
                The Identification value generated for the original
                packet.
@@ -1143,10 +1097,8 @@ Table of Contents
 
    reassembled original packet:
 
-   +------------------+----------------------//------------------------+
    |  Unfragmentable  |                 Fragmentable                   |
    |       Part       |                     Part                       |
-   +------------------+----------------------//------------------------+
 
    The following rules govern reassembly:
 
@@ -1246,22 +1198,19 @@ Table of Contents
 
 
 
-4.6  Destination Options Header
+6  Destination Options Header
 
    The Destination Options header is used to carry optional information
    that need be examined only by a packet's destination node(s).  The
    Destination Options header is identified by a Next Header value of 60
    in the immediately preceding header, and has the following format:
 
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |  Next Header  |  Hdr Ext Len  |                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                               +
    |                                                               |
    .                                                               .
    .                            Options                            .
    .                                                               .
    |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Next Header          8-bit selector.  Identifies the type of header
                         immediately following the Destination Options
@@ -1276,11 +1225,11 @@ Table of Contents
                         complete Destination Options header is an
                         integer multiple of 8 octets long.  Contains
                         one or  more TLV-encoded options, as described
-                        in section 4.2.
+                        in section 
 
 
    The only destination options defined in this document are the Pad1
-   and PadN options specified in section 4.2.
+   and PadN options specified in section 
 
    Note that there are two possible ways to encode optional destination
    information in an IPv6 packet: either as an option in the Destination
@@ -1308,11 +1257,11 @@ Table of Contents
       o  if any other action is desired, the information must be encoded
          as an option in the Destination Options header whose Option
          Type has the value 00, 01, or 10 in its highest-order two bits,
-         specifying the desired action (see section 4.2).
+         specifying the desired action (see section 2).
 
 
 
-4.7 No Next Header
+7 No Next Header
 
    The value 59 in the Next Header field of an IPv6 header or any
    extension header indicates that there is nothing following that
@@ -1354,12 +1303,12 @@ Table of Contents
 
 
 
-5. Packet Size Issues
+ Packet Size Issues
 
    IPv6 requires that every link in the internet have an MTU of 576
    octets or greater.  On any link that cannot convey a 576-octet packet
    in one piece, link-specific fragmentation and reassembly must be
-   provided at a layer below IPv6.
+   provided at a layer below IPv
 
     From each link to which a node is directly attached, the node must
    be able to accept packets as large as that link's MTU.  Links that
@@ -1393,7 +1342,7 @@ Table of Contents
    In response to an IPv6 packet that is sent to an IPv4 destination
    (i.e., a packet that undergoes translation from IPv6 to IPv4), the
    originating IPv6 node may receive an ICMP Packet Too Big message
-   reporting a Next-Hop MTU less than 576.  In that case, the IPv6 node
+   reporting a Next-Hop MTU less than 57  In that case, the IPv6 node
    is not required to reduce the size of subsequent packets to less than
    576, but must include a Fragment header in those packets so that the
    IPv6-to-IPv4 translating router can obtain a suitable Identification
@@ -1462,7 +1411,7 @@ Table of Contents
 
 
 
-6.  Flow Labels
+  Flow Labels
 
    The 24-bit Flow Label field in the IPv6 header may be used by a
    source to label those packets for which it requests special handling
@@ -1584,7 +1533,7 @@ Table of Contents
    that belonged to flows.
 
 
-7.  Priority
+  Priority
 
    The 4-bit Priority field in the IPv6 header enables a source to
    identify the desired delivery priority of its packets, relative to
@@ -1624,9 +1573,9 @@ Table of Contents
 
 
 
-8. Upper-Layer Protocol Issues
+ Upper-Layer Protocol Issues
 
-8.1 Upper-Layer Checksums
+1 Upper-Layer Checksums
 
    Any transport or other upper-layer protocol that includes the
    addresses from the IP header in its checksum computation must be
@@ -1634,7 +1583,6 @@ Table of Contents
    instead of 32-bit IPv4 addresses.  In particular, the following
    illustration shows the TCP and UDP "pseudo-header" for IPv6:
 
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                                                               +
    |                                                               |
@@ -1642,7 +1590,6 @@ Table of Contents
    |                                                               |
    +                                                               +
    |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                                                               +
    |                                                               |
@@ -1650,11 +1597,8 @@ Table of Contents
    |                                                               |
    +                                                               +
    |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                         Payload Length                        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                      zero                     |  Next Header  |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 
       o  If the packet contains a Routing header, the Destination
@@ -1700,11 +1644,11 @@ Table of Contents
    value 58, which identifies the IPv6 version of ICMP.
 
 
-8.2 Maximum Packet Lifetime
+2 Maximum Packet Lifetime
 
    Unlike IPv4, IPv6 nodes are not required to enforce maximum packet
    lifetime.  That is the reason the IPv4 "Time to Live" field was
-   renamed "Hop Limit" in IPv6.  In practice, very few, if any, IPv4
+   renamed "Hop Limit" in IPv  In practice, very few, if any, IPv4
    implementations conform to the requirement that they limit packet
    lifetime, so this is not a change in practice.  Any upper-layer
    protocol that relies on the internet layer (whether IPv4 or IPv6) to
@@ -1712,7 +1656,7 @@ Table of Contents
    mechanisms for detecting and discarding obsolete packets.
 
 
-8.3 Maximum Upper-Layer Payload Size
+3 Maximum Upper-Layer Payload Size
 
    When computing the maximum payload size available for upper-layer
    data, an upper-layer protocol must take into account the larger size
@@ -1736,14 +1680,14 @@ Appendix A. Formatting Guidelines for Options
 
    This appendix gives some advice on how to lay out the fields when
    designing new options to be used in the Hop-by-Hop Options header or
-   the Destination Options header, as described in section 4.2.  These
+   the Destination Options header, as described in section   These
    guidelines are based on the following assumptions:
 
       o  One desirable feature is that any multi-octet fields within the
          Option Data area of an option be aligned on their natural
          boundaries, i.e., fields of width n octets should be placed at
          an integer multiple of n octets from the start of the Hop-by-
-         Hop or Destination Options header, for n = 1, 2, 4, or 8.
+         Hop or Destination Options header, for n = 1, 2, 4, or 
 
       o  Another desirable feature is that the Hop-by-Hop or Destination
          Options header take up as little space as possible, subject to
@@ -1768,15 +1712,11 @@ Appendix A. Formatting Guidelines for Options
    one of length 4 octets, it would be laid out as follows:
 
 
-                                   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
                                    | Option Type=X |Opt Data Len=12|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                         4-octet field                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                         8-octet field                         +
    |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 
    Its alignment requirement is 8n+2, to ensure that the 8-octet field
@@ -1790,15 +1730,11 @@ Appendix A. Formatting Guidelines for Options
    containing this one option would look as follows:
 
 
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |  Next Header  | Hdr Ext Len=1 | Option Type=X |Opt Data Len=12|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                         4-octet field                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                         8-octet field                         +
    |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 
 
@@ -1809,13 +1745,9 @@ Appendix A. Formatting Guidelines for Options
    out as follows:
 
 
-                                                   +-+-+-+-+-+-+-+-+
                                                    | Option Type=Y |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |Opt Data Len=7 | 1-octet field |         2-octet field         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                         4-octet field                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 
    Its alignment requirement is 4n+3, to ensure that the 4-octet field
@@ -1824,15 +1756,10 @@ Appendix A. Formatting Guidelines for Options
    containing this one option would look as follows:
 
 
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |  Next Header  | Hdr Ext Len=1 | Pad1 Option=0 | Option Type=Y |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |Opt Data Len=7 | 1-octet field |         2-octet field         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                         4-octet field                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    | PadN Option=1 |Opt Data Len=2 |       0       |       0       |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 
 
@@ -1847,42 +1774,26 @@ Appendix A. Formatting Guidelines for Options
    formats, depending on which option appeared first:
 
 
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |  Next Header  | Hdr Ext Len=3 | Option Type=X |Opt Data Len=12|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                         4-octet field                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                         8-octet field                         +
    |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    | PadN Option=1 |Opt Data Len=1 |       0       | Option Type=Y |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |Opt Data Len=7 | 1-octet field |         2-octet field         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                         4-octet field                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    | PadN Option=1 |Opt Data Len=2 |       0       |       0       |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |  Next Header  | Hdr Ext Len=3 | Pad1 Option=0 | Option Type=Y |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |Opt Data Len=7 | 1-octet field |         2-octet field         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                         4-octet field                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    | PadN Option=1 |Opt Data Len=4 |       0       |       0       |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |       0       |       0       | Option Type=X |Opt Data Len=12|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                         4-octet field                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                         8-octet field                         +
    |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 
 
@@ -1952,36 +1863,36 @@ References
 
    [RFC-1825]   Atkinson, R., "Security Architecture for the Internet
                 Protocol", RFC 1825, Naval Research Laboratory, August
-                1995.
+                199
 
    [RFC-1826]   Atkinson, R., "IP Authentication Header", RFC 1826,
-                Naval Research Laboratory, August 1995.
+                Naval Research Laboratory, August 199
 
    [RFC-1827]   Atkinson, R., "IP Encapsulating Security Protocol
                 (ESP)", RFC 1827, Naval Research Laboratory, August
-                1995.
+                199
 
    [RFC-1885]   Conta, A., and S. Deering, "Internet Control Message
                 Protocol (ICMPv6) for the Internet Protocol Version 6
                 (IPv6) Specification", RFC 1885, Digital Equipment
-                Corporation, Xerox PARC, December 1995.
+                Corporation, Xerox PARC, December 199
 
    [RFC-1884]   Hinden, R., and S. Deering, Editors, "IP Version 6
                 Addressing Architecture", RFC 1884, Ipsilon Networks,
-                Xerox PARC, December 1995.
+                Xerox PARC, December 199
 
    [RFC-1191]   Mogul, J., and S. Deering, "Path MTU Discovery", RFC
-                1191, DECWRL, Stanford University, November 1990.
+                1191, DECWRL, Stanford University, November 199
 
    [RFC-791]    Postel, J., "Internet Protocol", STD 5, RFC 791,
-                USC/Information Sciences Institute, September 1981.
+                USC/Information Sciences Institute, September 198
 
    [RFC-1700]   Reynolds, J., and J. Postel, "Assigned Numbers", STD 2,
                 RFC 1700, USC/Information Sciences Institute, October
-                1994.
+                199
 
    [RFC-1661]   Simpson, W., Editor, "The Point-to-Point Protocol
-                (PPP)", STD 51, RFC 1661, Daydreamer, July 1994.
+                (PPP)", STD 51, RFC 1661, Daydreamer, July 199
 
 
 
