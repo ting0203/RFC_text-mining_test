@@ -1,0 +1,41 @@
+#核心標準
+RFC 3261, SIP: Session Initiation Protocol, July 2002.
+RFC 3262, Reliability of Provisional Responses in SIP, July 2002.
+RFC 3263, Session Initiation Protocol (SIP): Locating SIP Servers, July 2002.
+RFC 3264, An Offer/Answer Model with SDP, July 2002.
+RFC 5954, Essential Correction for IPv6 ABNF and URI Comparison in RFC 3261, August 2010.
+RFC 6665, SIP-Specific Event Notification, July 2012.
+#訊息處理
+RFC 5621, Message Body Handling in the SIP, September 2009.
+RFC 5626, Managing Client-Initiated Connections in the SIP, October 2009.
+RFC 5630, The Use of the SIPS URI Scheme in the SIP, October 2009.
+RFC 8217, Clarifications for When to Use the name-addr Production in SIP Messages, August 2017.
+#請求及回覆
+RFC 3331, The SIP UPDATE Method, October 2002.
+RFC 3428, SIP Extension for Instant Messaging, December 2002.
+RFC 3515, The Session Initiation Protocol (SIP) Refer Method, April 2003.
+RFC 3903, SIP Extension for Event State Publication, November 2004.
+RFC 6026, Correct Transaction Handling for 2xx Responses to Session Initiation Protocol (SIP) INVITE Requests, September 2010.
+RFC 6086, SIP INFO Method and Package Framework, January 2011.
+RFC 7647, Clarifications for the Use of REFER with RFC 6665, September 2015.
+RFC 8591, SIP-Based Messaging with S/MIME, April 2019.
+#SDP
+RFC 3264, An Offer/Answer Model with SDP, July 2002.
+RFC 4566, SDP: Session Description Protocol, July 2006.
+#IPv6 及 SIP
+RFC 6157, IPv6 Transition in the SIP, April 2011.
+RFC 7984, Locating SIP Servers in a Dual-Stack IP Network, September 2016.
+#應用
+RFC 3665, SIP Basic Call Flow Examples, January 2004.
+RFC 3666, SIP PSTN Call Flows, January 2004.
+RFC 4240, Basic Network Media Services with SIP, December 2005.
+RFC 4353, A Framework for Conferencing with the SIP, February 2006.
+#資訊安全
+RFC 3329, Security Mechanism Agreement for the SIP, January 2003.
+RFC 3853, S/MIME Advanced Encryption Standard (AES) Requirement for the Session Initiation Protocol (SIP), July 2004.
+RFC 4916, Connected Identity in the SIP, June 2007.
+RFC 5393, Addressing an Amplification Vulnerability in Session Initiation Protocol (SIP) Forking Proxies, December 2008.
+RFC 5922, Domain Certificates in the SIP, June 2010.
+RFC 8225, PASSporT: Personal Assertion Token, February 2018.
+RFC 8760, The SIP Digest Access Authentication Scheme, March 2020.
+

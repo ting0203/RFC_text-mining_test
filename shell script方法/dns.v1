@@ -1,0 +1,72 @@
+RFC 1034, Domain Names - Concepts and Facilities, P. Mockapetris, Internet Standard
+RFC 1035, Domain Names - Implementation and Specification, P. Mockapetris, Internet Standard
+RFC 1101, DNS Encodings of Network Names and Other Types, P. Mockapetris
+RFC 1178, Choosing a Name for Your Computer, D. Libes, Informational
+RFC 2100, The Naming of Hosts, J. Ashworth, Informational
+RFC 3696, Application Techniques for Checking and Transformation of Names, J. Klensin, Informational
+RFC 4343, Domain Name System (DNS) Case Insensitivity Clarification, D. Eastlake 3rd, Proposed Standard
+RFC 1183, New DNS RR Definitions, C. Everhart, Experimental
+RFC 3597, Handling of Unknown DNS Resource Record (RR) Types, A. Gustafsson, Proposed Standard
+RFC 2136, Dynamic Updates in the domain name system (DNS UPDATE), P. Vixie, Editor, Proposed Standard
+RFC 2137, Secure Domain Name System Dynamic Update, D. Eastlake 3rd, Proposed Standard
+RFC 3007, Secure Domain Name System (DNS) Dynamic Update, B. Wellington, Proposed Standard
+RFC 7719, DNS Terminology, P. Hoffman, Informational
+RFC 8499, DNS Terminology, P. Hoffman, Best Current Practice
+RFC 5966, DNS Transport over TCP - Implementation Requirements, R. Bellis, Proposed Standard
+RFC 7766, DNS Transport over TCP - Implementation Requirements, J. Dickinson, Proposed Standard
+RFC 1537, Common DNS Data File Configuration Errors, P. Beertema, Informational
+RFC 1912, Common DNS Operational and Configuration Errors, D. Barr, Informational
+RFC 2671, Extension Mechanisms for DNS (EDNS0), P. Vixie, Proposed Standard
+RFC 6891, Extension Mechanisms for DNS (EDNS(0)), J. Damas, Internet Standard
+RFC 7830, The EDNS(0) Padding Option, A. Mayrhofer, Proposed Standard
+RFC 7871, Client Subnet in DNS Queries, C. Contavalli, Informational
+RFC 1886, DNS Extensions to support IP version 6, S. Thomson, Proposed Standard
+RFC 3596, DNS Extensions to Support IP Version 6, S. Thomson, Internet Standard
+RFC 4592, The Role of Wildcards in the Domain Name System, E. Lewis, Proposed Standard
+RFC 4892, Requirements for a Mechanism Identifying a Name Server Instance, S. Woolf, Informational
+RFC 5001, DNS Name Server Identifier (NSID) Option, R. Austein, Proposed Standard
+RFC 2065, Domain Name System Security Extensions, D. Eastlake, 3rd, Proposed Standard
+RFC 2535, Domain Name System Security Extensions, D. Eastlake, Proposed Standard
+RFC 2845, Secret Key Transaction Authentication for DNS (TSIG), P. Vixie , Proposed Standard
+RFC 3225, Indicating Resolver Support of DNSSEC, D. Conrad, Proposed Standard
+RFC 3226, DNSSEC and IPv6 A6 aware server/resolver message size requirements, O. Gudmundsson, Proposed Standard
+RFC 4033, DNS Security Introduction and Requirements, R. Arends, Proposed Standard
+RFC 4034, Resource Records for the DNS Security Extensions, R. Arends, Proposed Standard
+RFC 4035, Protocol Modifications for the DNS Security Extensions, R. Arends, Proposed Standard
+RFC 4310, Domain Name System (DNS) Security Extensions Mapping for the Extensible Provisioning Protocol (EPP), S. Hollenbeck, Proposed Standard
+RFC 4470, Minimally Covering NSEC Records and DNSSEC On-line Signing, S. Weiler, Proposed Standard
+RFC 4509, Use of SHA-256 in DNSSEC Delegation Signer (DS) Resource Records, W. Hardaker, Proposed Standard
+RFC 5011, Automated Updates of DNS Security (DNSSEC) Trust Anchors, M. StJohns, Internet Standard
+RFC 5155, DNS Security (DNSSEC) Hashed Authenticated Denial of Existence, B. Laurie, Proposed Standard
+RFC 5702, Use of SHA-2 Algorithms with RSA in DNSKEY and RRSIG Resource Records for DNSSEC, J. Jansen, Proposed Standard
+RFC 5910, Domain Name System (DNS) Security Extensions Mapping for the Extensible Provisioning Protocol (EPP), J. Gould, Proposed Standard
+RFC 5933, Use of GOST Signature Algorithms in DNSKEY and RRSIG Resource Records for DNSSEC, V. Dolmatov, Ed., Proposed Standard
+RFC 6014, Cryptographic Algorithm Identifier Allocation for DNSSEC, P. Hoffman, Proposed Standard
+RFC 7626, DNS Privacy Considerations, S. Bortzmeyer, Informational
+RFC 7858, Specification for DNS over Transport Layer Security (TLS), Z. Hu, Proposed Standard
+RFC 8310, Usage Profiles for DNS over TLS and DNS over DTLS, Proposed Standard
+RFC 8484, DNS Queries over HTTPS (DoH), P. Hoffman, Proposed Standard
+RFC 5890, Internationalized Domain Names for Applications (IDNA):Definitions and Document Framework, J. Klensin, Proposed Standard
+RFC 5891, Internationalized Domain Names in Applications (IDNA): Protocol, J. Klensin, Proposed Standard
+RFC 5892, The Unicode Code Points and Internationalized Domain Names for Applications (IDNA), P. Faltstrom, Ed., Proposed Standard
+RFC 5893, Right-to-Left Scripts for Internationalized Domain Names for Applications (IDNA), H. Alvestrand, Ed., Proposed Standard
+RFC 5894, Internationalized Domain Names for Applications (IDNA):Background, Explanation, and Rationale, J. Klensin, Informational
+RFC 5895, Mapping Characters for Internationalized Domain Names in Applications (IDNA), P. Resnick, Informational
+RFC 2929, Domain Name System (DNS) IANA Considerations, D. Eastlake, 3rd, Best Current Practice
+RFC 5395, Domain Name System (DNS) IANA Considerations, D. Eastlake 3rd, Best Current Practice
+RFC 6195, Domain Name System (DNS) IANA Considerations (BCP 42), D. Eastlake 3rd, Best Current Practice
+RFC 7706, Decreasing Access Time to Root Servers by Running One on Loopback, W. Kumari, Informational
+RFC 7720, DNS Root Name Service Protocol and Deployment Requirements (BCP 40), M. Blanchet, Best Current Practice
+RFC 8490, DNS Stateful Operations, R. Bellis, Proposed Standard
+RFC 1995, Incremental Zone Transfer in DNS, M. Ohta, Proposed Standard
+RFC 1996, A Mechanism for Prompt Notification of Zone Changes (DNS NOTIFY), P. Vixie, Proposed Standard
+RFC 2308, Negative Caching of DNS Queries (DNS NCACHE), M. Andrews, Proposed Standard
+RFC 2181, Clarifications to the DNS Specification, R. Elz, Proposed Standard
+RFC 5452, Measures for Making DNS More Resilient against Forged Answers, A. Hubert, Proposed Standard
+RFC 2317, Classless IN-ADDR.ARPA delegation, H. Eidnes, Best Current Practice
+RFC 2672, Non-Terminal DNS Name Redirection, M. Crawford, Proposed Standard
+RFC 3467, Role of the Domain Name System (DNS), J. Klensin, Informational
+RFC 4635, HMAC SHA TSIG Algorithm Identifiers, D. Eastlake 3rd, Proposed Standard
+RFC 5625, DNS Proxy Implementation Guidelines (BCP 152), R. Bellis, Best Current Practice
+RFC 1591, Domain Name System Structure and Delegation, J. Postel, Informational
+RFC 2182, Selection and Operation of Secondary DNS Servers (BCP 16), R. Elz, Best Current Practice
